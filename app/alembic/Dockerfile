@@ -2,7 +2,7 @@ ARG PYTHON_VERSION
 
 FROM python:${PYTHON_VERSION}
 
-WORKDIR /app_root
+WORKDIR /project_root
 
 COPY . .
 

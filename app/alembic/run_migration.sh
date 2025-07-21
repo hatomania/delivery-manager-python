@@ -2,7 +2,7 @@
 
 set -e
 
-cd /app_root
+cd /project_root
 
 # .env を読み込む
 if [ -f .env ]; then

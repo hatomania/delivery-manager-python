@@ -1,5 +1,3 @@
-version: "3.20"
-
 services:
   db:
     image: postgres:${POSTGRES_VERSION}
@@ -22,8 +20,8 @@ services:
         PYTHON_VERSION: ${PYTHON_VERSION}
     depends_on:
       - db
-    volumes:
-      - .:/app_root
+    #volumes:
+    #  - .:/project_root
     networks:
       - backend
 

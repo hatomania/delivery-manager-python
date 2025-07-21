@@ -1,0 +1,34 @@
+version: "3.20"
+
+services:
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    networks:
+      - backend
+
+  alembic:
+    build:
+      context: . # working directory when build
+      dockerfile: ./app/alembic/Dockerfile
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION}
+    depends_on:
+      - db
+    volumes:
+      - .:/app_root
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+
+networks:
+  backend:
